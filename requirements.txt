@@ -2,7 +2,6 @@ pandas
 numpy
 streamlit
 matplotlib
-random
 ydata_profiling
 streamlit_pandas_profiling
 xgboost
