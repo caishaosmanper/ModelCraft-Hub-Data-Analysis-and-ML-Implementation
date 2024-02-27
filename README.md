@@ -8,7 +8,7 @@ EDA Analysis with ydata-profiling:
 * Upload your own CSV file to visualize descriptive statistics.
 * Gain insights into the structure and characteristics of your data.
 ### 2. Machine Learning Models:
-* Choose from a variety of classification and regression models and apply these models to data:
+* Choose from a variety of classification and regression models to apply to the data:
    * Logistic Regression
    * Random Forest Classifier
    * Decision Tree Classifier
