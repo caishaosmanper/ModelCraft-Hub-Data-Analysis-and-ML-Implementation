@@ -81,8 +81,6 @@ def main():
             x_train, x_test, y_train, y_test = preprocessing(data)
             apply_ml_model(ml_option, x_train, x_test, y_train, y_test)
 
-    "st.session_state. object:", st.session_state
-
 
 if __name__ == "__main__":
     main()
