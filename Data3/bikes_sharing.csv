@@ -1,4 +1,4 @@
-temp_real_C,temp_feels_like_C,humiditty,wind_speed_kph,season,weather
+temp_real_C,temp_feels_like_C,humidity,wind_speed_kph,season,weather
 3.0,2.0,0.93,6.0,3.0,2.0
 3.0,2.5,0.93,5.0,3.0,1.0
 2.5,2.5,0.965,0.0,3.0,1.0
