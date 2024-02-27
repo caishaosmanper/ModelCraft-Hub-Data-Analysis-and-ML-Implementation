@@ -39,9 +39,11 @@ def upload_data():
     # Display header for Step 1
     display_header("Step 1", "Upload data", is_sidebar=True)
 
-    load = st.sidebar.checkbox('Use demo data', value=False, help='Using a wildfire dataset')
+    load = st.sidebar.checkbox('Use demo data', value=False, help="Click to use a dataset. The application will "
+                                                                  "randomly choose between a fires dataset and a "
+                                                                  "bike-sharing dataset")
     file_demo = random.randint(0, 1)
-    files = ['Data3/merged_fire_sample_size.csv', 'Data3/bikes_sharing.csv']
+    files = ['Data3/merged_fire_sample.csv', 'Data3/bikes_sharing.csv']
     if load:
         st.subheader("Step 1: Preview Data")
         uploaded_data = pd.read_csv(files[file_demo])
