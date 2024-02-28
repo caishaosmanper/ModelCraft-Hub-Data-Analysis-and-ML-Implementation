@@ -109,6 +109,10 @@ def eda(eda_option, uploaded_file):
             st_profile_report(pr)
         st.session_state.eda_option = eda_option
 
+        # display header for step 4 and create an export file of report
+        display_header("Step 3", "Download report", is_sidebar=True)
+        export = pr.to_html()
+        st.sidebar.download_button(label=":file_folder:", data=export, file_name='report.html')
 
 def preprocessing(uploaded_file):
     """
