@@ -65,14 +65,10 @@ def main():
         if eda_option is not None:
             eda(eda_option, data)
 
-    # Display header for Step 3
-    display_header("Step 3", "Choose a ML model", is_sidebar=True)
-
+    # Display header for Step 4
+    display_header("Step 4", "Choose a ML model", is_sidebar=True)
     # Select ML model option
     ml_option = select_insert(ml_options, "None")
-
-    # Display header for Step 4
-    display_header("Step 4", "Download report", is_sidebar=True)
 
     # Display model performance metrics
     with container:
