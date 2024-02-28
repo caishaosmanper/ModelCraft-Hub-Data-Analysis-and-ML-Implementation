@@ -35,6 +35,7 @@ def upload_data():
     """
     pd.set_option('display.max_rows', None)
     pd.set_option('display.width', 500)
+    pd.set_option("styler.render.max_elements", 50000000)
 
     # Display header for Step 1
     display_header("Step 1", "Upload data", is_sidebar=True)
@@ -47,7 +48,7 @@ def upload_data():
     if load:
         st.subheader("Step 1: Preview Data")
         uploaded_data = pd.read_csv(files[file_demo])
-        st.write(uploaded_data.style.set_properties(**{'text-align': 'right'}))
+        st.write(uploaded_data)
         st.session_state.data = uploaded_data
         return uploaded_data
     else:
