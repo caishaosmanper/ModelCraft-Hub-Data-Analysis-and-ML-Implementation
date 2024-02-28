@@ -33,7 +33,7 @@ def upload_data():
     -------
     :return pd.DataFrame or None -> The uploaded dataset or None if no dataset is uploaded.
     """
-    pd.set_option('display.max_rows', None)
+    pd.set_option('display.max_rows', 10**10)
     pd.set_option('display.width', 500)
     pd.set_option("styler.render.max_elements", 10**10)
 
