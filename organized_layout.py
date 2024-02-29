@@ -58,7 +58,6 @@ def upload_data():
             uploaded_data = pd.read_csv(uploaded_data)
             st.write(uploaded_data)
             st.session_state.data = uploaded_data
-
             return uploaded_data
         else:
             st.sidebar.warning("Please upload a dataset")
