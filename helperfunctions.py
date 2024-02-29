@@ -335,19 +335,21 @@ def apply_ml_model(ml_option, x_train, x_test, y_train, y_test):
 
             st.subheader("Step 3: Evaluating the ML model")
             st.divider()
-            st.write("Visualizing Classification Performance: Confusion Matrix Display")
+            # st.write("Visualizing Classification Performance: Confusion Matrix Display")
 
             model_result = ml_functions[ml_option](x_train, x_test, y_train, y_test)
             st.session_state.model_result_ = model_result
             name = st.session_state.ml_option_.lstrip()
 
             if "Logistical" in ml_option or "Classification" in ml_option:
+                st.write("Visualizing Classification Performance: Confusion Matrix Display")
                 st.write(f"The accuracy score of this model: {name} is {round(model_result[0], 3)}")
-                st.divider()
 
             elif "Regressor" in ml_option:
                 st.write(f"The mean square error of this model: {name} is {round(model_result[0], 3)}")
                 st.write(f"The root mean square error of this model: {name} is {round(model_result[1], 3)}")
+            st.divider()
+
     except:
         # display warning
         st.warning("Model is not suitable for this dataset")
