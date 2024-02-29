@@ -330,15 +330,15 @@ def apply_ml_model(ml_option, x_train, x_test, y_train, y_test):
             name = st.session_state.ml_option_.lstrip()
 
             if "Logistical" in ml_option or "Classifier" in ml_option:
-                st.write("Visualizing Classification Performance: Confusion Matrix Display")
-                fig, ax = plt.subplots()
-                model_result[1].plot(ax=ax)
-                st.pyplot(fig)
-                st.write(f"The accuracy score of this model: {name} is {round(model_result[0], 3)}")
+                st.write("Visualizing Classification Performance:  \n 1.  Confusion Matrix Display")
+                fig_log, ax_log = plt.subplots()
+                model_result[1].plot(ax=ax_log)
+                st.pyplot(fig_log)
+                st.write(f"2.  The accuracy score of this model: {name} is {round(model_result[0], 3)}")
 
             elif "Regressor" in ml_option:
-                st.write(f"The mean square error of this model: {name} is {round(model_result[0], 3)}")
-                st.write(f"The root mean square error of this model: {name} is {round(model_result[1], 3)}")
+                st.write(f"1.  The mean square error of this model: {name} is {round(model_result[0], 3)}")
+                st.write(f"2.  The root mean square error of this model: {name} is {round(model_result[1], 3)}")
             st.divider()
 
     except:
