@@ -15,11 +15,9 @@ from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDis
     mean_squared_error
 
 
-all_options = \
-    ["yes", "no", "Logistical Regression", "Random Forest Classifier",
-     "Decision Tree Classification", "Random Forest Regressor", "Decision Tree Regressor", "Gradient Boost Regressor"]
-ml_options = all_options[2:]
-analysis_options = all_options[:2]
+ml_options = ["Logistical Regression", "Random Forest Classifier", "Decision Tree Classification",
+              "Random Forest Regressor", "Decision Tree Regressor", "Gradient Boost Regressor"]
+analysis_options = ["yes", "no"]
 
 
 def set_background(main_bg):
