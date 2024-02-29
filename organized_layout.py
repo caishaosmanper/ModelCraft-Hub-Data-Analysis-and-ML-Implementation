@@ -4,7 +4,6 @@ import streamlit as st
 import random
 
 
-
 def set_base():
     """
     Display the foundational configuration and styling
