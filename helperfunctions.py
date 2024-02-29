@@ -15,7 +15,7 @@ from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDis
     mean_squared_error
 
 
-ml_options = ["Logistical Regression", "Random Forest Classifier", "Decision Tree Classification",
+ml_options = ["Logistical Regression", "Random Forest Classifier", "Decision Tree Classifier",
               "Random Forest Regressor", "Decision Tree Regressor", "Gradient Boost Regressor"]
 analysis_options = ["yes", "no"]
 
@@ -317,7 +317,7 @@ def apply_ml_model(ml_option, x_train, x_test, y_train, y_test):
 
             ml_functions = {"Logistical Regression": logistical_regression,
                             "Random Forest Classifier": random_forest_classifier,
-                            "Decision Tree Classification": dtreeclassifier,
+                            "Decision Tree Classifier": dtreeclassifier,
                             "Random Forest Regressor": random_forest_regressor,
                             "Decision Tree Regressor": dtreeregressor,
                             "Gradient Boost Regressor": gboost_regressor}
@@ -329,7 +329,7 @@ def apply_ml_model(ml_option, x_train, x_test, y_train, y_test):
             st.session_state.model_result_ = model_result
             name = st.session_state.ml_option_.lstrip()
 
-            if "Logistical" in ml_option or "Classification" in ml_option:
+            if "Logistical" in ml_option or "Classifier" in ml_option:
                 st.write("Visualizing Classification Performance: Confusion Matrix Display")
                 fig, ax = plt.subplots()
                 model_result[1].plot(ax=ax)
