@@ -334,7 +334,8 @@ def apply_ml_model(ml_option, x_train, x_test, y_train, y_test):
             st.subheader("Step 3: Evaluating the ML model")
             st.divider()
             # st.write("Visualizing Classification Performance: Confusion Matrix Display")
-
+            
+            if "Logistical" in ml_option or "Classification" in ml_option:
             model_result = ml_functions[ml_option](x_train, x_test, y_train, y_test)
             st.session_state.model_result_ = model_result
             name = st.session_state.ml_option_.lstrip()
@@ -350,4 +351,6 @@ def apply_ml_model(ml_option, x_train, x_test, y_train, y_test):
 
     except:
         # display warning
-        st.warning("Model is not suitable for this dataset")
+        st.warning("Model is not suitable for this dataset. Make sure data is suitable. Also, kindly ensure that "
+                   "your dataset adheres to the required format. Specifically, the testing column should be positioned "
+                   "at the end. Failure to meet these criteria may impact the analysis results.")
