@@ -158,9 +158,6 @@ def logistical_regression(x_train, x_test, y_train, y_test):
     log_cm = confusion_matrix(y_test, y_pred_log)
     display_log = ConfusionMatrixDisplay(confusion_matrix=log_cm, display_labels=log_r.classes_)
     st.session_state.model_result_ = accuracy_log, display_log
-    fig_log, ax_log = plt.subplots()
-    display_log.plot(ax=ax_log)
-    st.pyplot(fig_log)
 
     return accuracy_log, display_log
 
@@ -189,9 +186,6 @@ def random_forest_classifier(x_train, x_test, y_train, y_test):
     rfc_cm = confusion_matrix(y_test, y_pred_rfc)
     display_rfc = ConfusionMatrixDisplay(confusion_matrix=rfc_cm, display_labels=rfc.classes_)
     st.session_state.model_result_ = accuracy_rfc, display_rfc
-    fig, ax = plt.subplots()
-    display_rfc.plot(ax=ax)
-    st.pyplot(fig)
 
     return accuracy_rfc, display_rfc
 
@@ -220,9 +214,6 @@ def dtreeclassifier(x_train, x_test, y_train, y_test):
     dtc_cm = confusion_matrix(y_test, y_pred_dtc)
     display_dtc = ConfusionMatrixDisplay(confusion_matrix=dtc_cm, display_labels=dtc.classes_)
     st.session_state.model_result_ = accuracy_dtc, display_dtc
-    fig, ax = plt.subplots()
-    display_dtc.plot(ax=ax)
-    st.pyplot(fig)
 
     return accuracy_dtc, display_dtc
 
@@ -333,15 +324,16 @@ def apply_ml_model(ml_option, x_train, x_test, y_train, y_test):
 
             st.subheader("Step 3: Evaluating the ML model")
             st.divider()
-            # st.write("Visualizing Classification Performance: Confusion Matrix Display")
             
-            if "Logistical" in ml_option or "Classification" in ml_option:
             model_result = ml_functions[ml_option](x_train, x_test, y_train, y_test)
             st.session_state.model_result_ = model_result
             name = st.session_state.ml_option_.lstrip()
 
             if "Logistical" in ml_option or "Classification" in ml_option:
                 st.write("Visualizing Classification Performance: Confusion Matrix Display")
+                fig, ax = plt.subplots()
+                model_result[1].plot(ax=ax)
+                st.pyplot(fig)
                 st.write(f"The accuracy score of this model: {name} is {round(model_result[0], 3)}")
 
             elif "Regressor" in ml_option:
@@ -350,7 +342,7 @@ def apply_ml_model(ml_option, x_train, x_test, y_train, y_test):
             st.divider()
 
     except:
-        # display warning
+        # display warning for unsuitable dataset
         st.warning("Model is not suitable for this dataset. Make sure data is suitable. Also, kindly ensure that "
                    "your dataset adheres to the required format. Specifically, the testing column should be positioned "
                    "at the end. Failure to meet these criteria may impact the analysis results.")
