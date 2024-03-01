@@ -27,6 +27,7 @@ def set_background(main_bg):
     -------
     :param main_bg: str -> The path to the background image.
     """
+
     background_style = f"""
          <style>
          .stApp {{
@@ -80,8 +81,6 @@ def select_insert(options, holder):
     :param options: list -> labels for the selectbox options
     :param holder: str -> a string to display when no options are selected
     """
-    # if "options" not in st.session_state:
-    #     st.session_state["options"]":
 
     option = st.sidebar.selectbox("Select an option ", options, index=None, placeholder=holder)
     if option not in options:
@@ -100,18 +99,30 @@ def eda(eda_option, uploaded_file):
     :param eda_option: str -> user choice
     :param uploaded_file: a pd.dataframe
     """
+
     if eda_option == "yes" and uploaded_file is not None:
-        st.subheader("Step 2: Pandas Profiling Report")
+        # EDA header for main page
+        st.divider()
+        st.subheader("2. Pandas Profiling Report")
+        st.divider()
+
+        # view report on main page
         pr = uploaded_file.profile_report()
-        with st.expander("Click here for full report below", expanded=True):
-            st_profile_report(pr)
+        st_profile_report(pr)
+
         st.session_state.eda_option = eda_option
 
         # display header for step 4 and create an export file of report
-        display_header("Step 3", "Download report", is_sidebar=True)
+        display_header("Step 3", "Download EDA report", is_sidebar=True)
         export = pr.to_html()
         st.sidebar.download_button(label=":file_folder:", data=export, file_name='report.html')
 
+    # display errors
+    elif eda_option == "yes" and uploaded_file is None:
+        st.warning("Please complete step 1 in sidebar. ")
+
+
+@st.cache_data
 def preprocessing(uploaded_file):
     """
     Split data into test-train
@@ -120,6 +131,7 @@ def preprocessing(uploaded_file):
     :return: tuple containing x_train, x_test, y_train, y_test.
 
     """
+
     # Splitting the merged dataframe into input and output
     if uploaded_file is not None:
         x = uploaded_file.iloc[:, :-1]
@@ -130,8 +142,6 @@ def preprocessing(uploaded_file):
         st.session_state.x_train_, st.session_state.x_test_, st.session_state.y_train_, st.session_state.y_test_ = \
             x_train, x_test, y_train, y_test
         return x_train, x_test, y_train, y_test
-
-# Classifier Ml models
 
 
 @st.cache_data
@@ -216,8 +226,6 @@ def dtreeclassifier(x_train, x_test, y_train, y_test):
     st.session_state.model_result_ = accuracy_dtc, display_dtc
 
     return accuracy_dtc, display_dtc
-
-# Regression Ml models
 
 
 # DecisionTree Regressor
@@ -310,6 +318,7 @@ def apply_ml_model(ml_option, x_train, x_test, y_train, y_test):
     :param y_train: pd.DataFrame -> Training output data
     :param y_test: pd.DataFrame -> Testing output data
     """
+
     try:
         # Set up the selectbox for ML models
         if ml_option in ml_options and x_train is not None:
@@ -322,15 +331,18 @@ def apply_ml_model(ml_option, x_train, x_test, y_train, y_test):
                             "Decision Tree Regressor": dtreeregressor,
                             "Gradient Boost Regressor": gboost_regressor}
 
-            st.subheader("Step 3: Evaluating the ML model")
+            # display header
             st.divider()
-            
+            st.subheader("3. Evaluating the ML model")
+            st.divider()
+
+            # apply ml model and display results
             model_result = ml_functions[ml_option](x_train, x_test, y_train, y_test)
             st.session_state.model_result_ = model_result
             name = st.session_state.ml_option_.lstrip()
 
             if "Logistical" in ml_option or "Classifier" in ml_option:
-                st.write("Visualizing Classification Performance:  \n 1.  Confusion Matrix Display")
+                st.write("**Visualizing Classification Performance:**  \n 1.  Confusion Matrix Display")
                 fig_log, ax_log = plt.subplots()
                 model_result[1].plot(ax=ax_log)
                 st.pyplot(fig_log)
@@ -342,7 +354,7 @@ def apply_ml_model(ml_option, x_train, x_test, y_train, y_test):
             st.divider()
 
     except:
-        # display warning for unsuitable dataset
-        st.warning("Model is not suitable for this dataset. Make sure data is suitable. Also, kindly ensure that "
-                   "your dataset adheres to the required format. Specifically, the testing column should be positioned "
-                   "at the end. Failure to meet these criteria may impact the analysis results.")
+        # display warning
+        st.warning("WARNING - Model is not suitable for this dataset. Make sure data is suitable. Also, kindly"
+                   " ensure that your dataset adheres to the required format. Specifically, the testing column should"
+                   " be positioned at the end. Failure to meet these criteria may impact the analysis results.")
