@@ -25,6 +25,16 @@ def set_base():
     st.sidebar.image("images/logo.png", use_column_width=True)
     st.sidebar.text("")
 
+    # Hide hamburger icon menu & streamlit header
+    hide_st_style = """
+                <style>
+                #MainMenu {visibility: hidden;}
+                footer {visibility: hidden;}
+                header {visibility: hidden;}
+                </style>
+                """
+    st.markdown(hide_st_style, unsafe_allow_html=True)
+
 
 def upload_data():
     """
