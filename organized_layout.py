@@ -10,7 +10,7 @@ def set_base():
     """
     # Set page configuration, background and header
     st.set_page_config(page_title="Prediction of Wild Fires", page_icon='📊', layout='centered')
-    set_background("images/background_image (3).png")
+    set_background("images/background_image.png")
     display_header("ModelCraft Hub",
                    "select, clean and visualize data for AI modeling", is_sidebar=False)
 
