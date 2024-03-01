@@ -18,3 +18,7 @@ EDA Analysis with ydata-profiling:
 ### 3. Downloadable EDA PDF Report:
 * Receive a detailed EDA PDF report upon completion of each analysis.
 * Use the report to better understand your data and make informed decisions.
+
+
+
+website link: https://modelcraft.streamlit.app/
