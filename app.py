@@ -13,8 +13,8 @@ csv input file and further ML implementations.
 <li>  Apply various classification or regression models, including logistic regression, random forest
 &nbsp&nbsp&nbsp&nbsp&nbsp classifier, decision tree classifier, random forest regressor, decision tree regressor, and 
 <br> &nbsp&nbsp&nbsp&nbsp&nbsp gradient boost regressor to derive insights and predictions from your data  </a> </li>
-<b>Please note that the testing column should be positioned as the last column for the ml modeling section so run 
-smoothly. The EDA PDF report is available for download upon completion of each analysis.<b>
+<b>Please ensure the testing column is positioned last in the ML modeling section for optimal functionality. Additionally
+, a downloadable EDA PDF report is provided upon completion of each analysis.<b>
 """
 
 
